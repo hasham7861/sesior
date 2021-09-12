@@ -5,15 +5,14 @@ var users = {};
 var self = module.exports = {
     verifySession: function (req, res) {
         var userName = req.session.userName;
-
-        if (userName && !users[userName]) {
+        console.log(userName)
+        if (userName && users[userName]) {
             users[userName] = { userName: userName };
-            res.send({ sessionVerified: true, user: users[userName] });
+            return res.send({ sessionVerified: true, user: users[userName] });
         }
         else {
-            if (users[userName])
-                req.session.userName = "";
-            res.send({ sessionVerified: false });
+            req.session.userName = "";
+            return res.send({ sessionVerified: false });
         }
     },
     register: function (req, res) {

@@ -14,7 +14,7 @@ var server = http.createServer(app);
 var ioServer = io.listen(server);
 
 var redis = require('redis');
-var redisClient = redis.createClient();
+var redisClient = redis.createClient();// by default it listens to port localhost:6379
 var RedisStore = require('connect-redis')(session);
 var redisStore = new RedisStore({ client: redisClient });
 
